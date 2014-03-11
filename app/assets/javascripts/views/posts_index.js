@@ -2,7 +2,7 @@ window.Journal.Views.PostsIndex = Backbone.View.extend({
 	template: JST["posts/index"],
 
 	initialize: function() {
-		this.listenTo(this.collection, "remove add change:title remove reset", this.render);
+		this.listenTo(this.collection, "remove add change:title reset", this.render);
 	},
 
 	render: function() {
@@ -11,17 +11,15 @@ window.Journal.Views.PostsIndex = Backbone.View.extend({
 	},
 
 	events: {
-		"click button.delete" : "remove"
-
+		"click button.delete" : "destroyPost"
 	},
 
-	remove: function(event) {
+	destroyPost: function(event) {
 		var id = $(event.currentTarget).data('id');
-		this.collection.remove(this.collection.get(id));
+		this.collection.get(id).destroy();
 	},
 
 	add: function(event) {
 		alert("ADD");
 	}
-
 })

@@ -3,15 +3,15 @@ window.Journal = {
   Collections: {},
   Views: {},
   Routers: {},
+	Data: {},
 
   initialize: function() {
-		var posts = new Journal.Collections.Posts();
-		posts.fetch({
-			success: function (posts) {
-				var postsView = new Journal.Views.PostsIndex({collection: posts});
-				$('#content').append(postsView.render().$el);
-			}
-		})
+		Journal.Data.posts = new Journal.Collections.Posts();
+    // just sets up the routes
+    new Journal.Routers.AppRouter();
+
+    // start listening to changes to the location
+    Backbone.history.start();
   }
 };
 
