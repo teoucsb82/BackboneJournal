@@ -6,6 +6,7 @@ window.Journal.Routers.AppRouter = Backbone.Router.extend({
 
 	routes: {
 		"" : "postsIndex",
+		"posts/new" : "postsNew",
 		"posts/:id" : "postsShow"
 	},
 
@@ -20,6 +21,13 @@ window.Journal.Routers.AppRouter = Backbone.Router.extend({
 		var post = Journal.Data.posts.get(id);
 		var postView = new Journal.Views.PostsShow({ model: post });
 		this._swapView(postView);
+	},
+
+	postsNew: function() {
+		var newPost = new Journal.Models.Post();
+		var postNewView = new Journal.Views.PostsNew({ model: newPost });
+		this._swapView(postNewView);
+
 	},
 
 	_swapView: function(view) {

@@ -6,7 +6,9 @@ window.Journal = {
 	Data: {},
 
   initialize: function() {
+		//Ryan's style -- better than CJ's
 		Journal.Data.posts = new Journal.Collections.Posts();
+
     // just sets up the routes
     new Journal.Routers.AppRouter();
 
