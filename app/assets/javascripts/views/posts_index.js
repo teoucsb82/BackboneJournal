@@ -1,23 +1,27 @@
 window.Journal.Views.PostsIndex = Backbone.View.extend({
 	template: JST["posts/index"],
 
+	initialize: function() {
+		this.listenTo(this.collection, "remove add change:title remove reset", this.render);
+	},
+
 	render: function() {
-		// var view = this;
-//
-// 		this.$el.empty();
-// 		var $ul = $('<ul></ul>');
-//
-//
-// 		(Journal.Models.Post.all).each(function (post) {
-// 			var $li = $('<li></li>');
-// 			$li.text(post.escape("title"));
-//
-// 			$ul.append($li);
-// 		});
-
-
-
 		this.$el.html(this.template({posts: this.collection}));
 		return this;
+	},
+
+	events: {
+		"click button.delete" : "remove"
+
+	},
+
+	remove: function(event) {
+		var id = $(event.currentTarget).data('id');
+		this.collection.remove(this.collection.get(id));
+	},
+
+	add: function(event) {
+		alert("ADD");
 	}
+
 })

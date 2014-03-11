@@ -3,8 +3,8 @@ window.Journal = {
   Collections: {},
   Views: {},
   Routers: {},
+
   initialize: function() {
-    // alert('Hello from Backbone!');
 		var posts = new Journal.Collections.Posts();
 		posts.fetch({
 			success: function (posts) {
