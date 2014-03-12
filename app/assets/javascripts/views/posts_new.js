@@ -10,8 +10,9 @@ window.Journal.Views.PostsNew = Backbone.View.extend({
 		event.preventDefault();
 
 		var params = $(event.currentTarget).serializeJSON()['post'];
-		var newPost = new Journal.Models.Post(params);
-		newPost.save({}, {
+		this.model.set(params);
+		console.log("model.params", this.model)
+		this.model.save({}, {
 			success: function() {
 				Backbone.history.navigate('#/', true);
 			},

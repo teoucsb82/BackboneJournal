@@ -25,9 +25,9 @@ window.Journal.Routers.AppRouter = Backbone.Router.extend({
 
 	postsNew: function() {
 		var newPost = new Journal.Models.Post();
-		var postNewView = new Journal.Views.PostsNew({ model: newPost });
-		this._swapView(postNewView);
+		var postNewView = new Journal.Views.PostsNew({ collection: Journal.Data.posts, model: newPost });
 
+		this._swapView(postNewView);
 	},
 
 	_swapView: function(view) {
