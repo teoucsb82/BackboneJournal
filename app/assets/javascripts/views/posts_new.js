@@ -15,8 +15,8 @@ window.Journal.Views.PostsNew = Backbone.View.extend({
 
 		var params = $(event.currentTarget).serializeJSON()['post'];
 
-		var goHome = { success: function () {
-    	Backbone.history.navigate('#/post', true);
+		var goHome = { success: function (post) {
+    	Backbone.history.navigate('#/posts/' + post.id, true);
     }};
 
 		if(this.model.isNew()) {

@@ -3,6 +3,7 @@ window.Journal.Views.PostsIndex = Backbone.View.extend({
 
 	initialize: function() {
 		this.listenTo(Journal.Data.posts, "remove add reset change", this.render);
+		// this.listenTo(Journal.Data.posts, "remove add reset change", this.render);
 	},
 
 	render: function() {
