@@ -14,7 +14,7 @@ window.Journal.Routers.AppRouter = Backbone.Router.extend({
 		var posts = Journal.Data.posts;
 		posts.fetch();
 		var postsView = new Journal.Views.PostsIndex({ collection: posts });
-		this._swapView(postsView);
+		$('#sidebar').html(postsView.render().$el);
 	},
 
 	postsShow: function(id) {

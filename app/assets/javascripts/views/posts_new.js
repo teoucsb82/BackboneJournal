@@ -1,5 +1,9 @@
 window.Journal.Views.PostsNew = Backbone.View.extend({
 
+	// initialize: function() {
+	// 	this.listenTo(Journal.Data.posts, "add", this.render);
+	// },
+
 	template: JST["posts/new"],
 
 	events: {
@@ -8,33 +12,25 @@ window.Journal.Views.PostsNew = Backbone.View.extend({
 
 	submit: function(event) {
 		event.preventDefault();
-    var goHome = { success: function () {
-    	Backbone.history.navigate('#/', true);
-    }};
+
 		var params = $(event.currentTarget).serializeJSON()['post'];
+
+		var goHome = { success: function () {
+    	Backbone.history.navigate('#/post', true);
+    }};
+
 		if(this.model.isNew()) {
       window.Journal.Data.posts.create(params, goHome);
 		} else {
 			this.model.save(params, goHome)
 		}
-		//
-		// this.model.set(params);
-		// console.log("model.params", this.model)
-		// this.model.save({}, {
-		// 	success: function() {
-		// 		Backbone.history.navigate('#/', true);
-		// 	},
-		// 	error: function(error) {
-		// 		alert("Invalid form!");
-		// 	}
-		// });
-
 	},
 
 	render: function() {
 		var renderedContent = this.template({ post: this.model });
-		this.$el.html(renderedContent);
+		(this.$el).html(renderedContent);
 		return this;
-	}
+	},
+
 
 })
